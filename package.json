@@ -4,13 +4,12 @@
     "description": "Web service TODO list con NodeJS",
     "main": "index.js",
     "scripts": {
-      "start": "node index.js"
+        "start": "node index.js"
     },
     "dependencies": {
-      "express": "^4.17.1",
-      "body-parser": "^1.19.0"
+        "body-parser": "^1.20.3",
+        "express": "^4.21.2"
     },
     "author": "",
     "license": "ISC"
-  }
-  
+}

@@ -22,3 +22,25 @@ app.get("/todo", (req, res) => {
     res.json({ todos: todos });
     console.log();
 });
+
+app.put("/todo/complete", (req, res) => {
+    const todo = req.body;
+    todos = todos.map((element) => {
+        if (element.id === todo.id) {
+            element.completed = true;
+        }
+        return element;
+    });
+    res.json({ result: "Ok" });
+    console.log();
+});
+
+app.delete("/todo/:id", (req, res) => {
+    todos = todos.filter((element) => element.id !== req.params.id);
+    res.json({ result: "Ok" });
+    console.log();
+});
+
+const server = app.listen(80, () => {
+    console.log();
+});
