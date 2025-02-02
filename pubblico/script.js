@@ -35,7 +35,6 @@ const render = () => {
 };
 
 const send = (todo) => {
-    console.log(todo);
     return fetch("/todo/add", {
         method: 'POST',
         headers: {
@@ -49,7 +48,6 @@ const send = (todo) => {
 };
 
 const load = () => {
-    console.log();
     return fetch("/todo").then(response => response.json()).then((json) => {
         todos = json.todos;
         console.log(todos);
@@ -58,7 +56,6 @@ const load = () => {
 };
 
 const completeTodo = (todo) => {
-    console.log(todo);
     return fetch("/todo/complete", {
         method: 'PUT',
         headers: {
@@ -70,3 +67,34 @@ const completeTodo = (todo) => {
         return result;
     });
 };
+
+
+const deleteTodo = (id) => {
+    console.log(id);
+    return fetch(`/todo/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(response => response.json()).then(result => {
+        console.log(result);
+        return result;
+    });
+};
+
+insertButton.onclick = () => {
+    const todo = {
+        name: todoInput.value,
+        completed: false
+    };
+    send(todo).then(() => load()).then(() => {
+        todoInput.value = '';
+        console.log();
+    });
+};
+
+load();
+
+setInterval(() => {
+    load();
+}, 30000);
