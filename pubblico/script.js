@@ -33,3 +33,40 @@ const render = () => {
     });
     console.log();
 };
+
+const send = (todo) => {
+    console.log(todo);
+    return fetch("/todo/add", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(todo)
+    }).then(response => response.json()).then(result => {
+        console.log(result);
+        return result;
+    });
+};
+
+const load = () => {
+    console.log();
+    return fetch("/todo").then(response => response.json()).then((json) => {
+        todos = json.todos;
+        console.log(todos);
+        render();
+    });
+};
+
+const completeTodo = (todo) => {
+    console.log(todo);
+    return fetch("/todo/complete", {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(todo)
+    }).then(response => response.json()).then(result => {
+        console.log(result);
+        return result;
+    });
+};
