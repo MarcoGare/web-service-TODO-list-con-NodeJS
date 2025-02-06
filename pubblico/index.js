@@ -1,6 +1,6 @@
 const fs = require('fs');
 const mysql = require('mysql2');
-const conf = JSON.parse(fs.readFileSync('conf.json'));
+const conf = JSON.parse(fs.readFileSync('package.json'));
 const connection = mysql.createConnection(conf);
 
 const executeQuery = (sql) => {
@@ -46,3 +46,6 @@ createTable().then(() => {
       select().then(console.log);
    });
 });
+
+
+select().then(console.log);
